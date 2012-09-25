@@ -3,18 +3,16 @@ package financeiro.cheque;
 import java.io.Serializable;
 import javax.persistence.*;
 
-@Embeddable
-public class ChequeId implements Serializable{
+public class ChequeId implements Serializable {
 
-
-	private static final long serialVersionUID = 4383408956124051193L;
+	private static final long serialVersionUID = 6511059069332565416L;
 
 	@Basic(optional = false)
-	@Column(name="cheque", nullable = false)
+	@Column(name = "cheque", nullable = false)
 	private Integer cheque;
-	
-	@Basic(optional=false)
-	@Column(name="conta",nullable=false)
+
+	@Basic(optional = false)
+	@Column(name = "conta", nullable = false)
 	private Integer conta;
 
 	public Integer getCheque() {
@@ -63,5 +61,5 @@ public class ChequeId implements Serializable{
 			return false;
 		return true;
 	}
-	
+
 }
