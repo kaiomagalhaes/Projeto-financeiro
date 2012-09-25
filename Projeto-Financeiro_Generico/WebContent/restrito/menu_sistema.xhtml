@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+
+<ui:composition>
+	<sec:ifAnyGranted roles="ROLE_USUARIO">
+		<h:form id="menu">
+			<table width="100%">
+				<tr>
+					<td><h:outputLabel>Seja bem vindo(a): #{request.remoteUser}</h:outputLabel></td>
+
+					<td align="right">
+						<h:commandButton value="Lançamentos"
+										action="/restrito/lancamento" /> 
+						
+						<h:commandButton
+							value="Categorias" 
+							action="/restrito/categoria" /> 
+						
+						<h:commandButton
+							action="conta" 
+							value="Minhas contas" /> 
+							
+						<h:commandButton
+							action="cheque" 
+							value="Cheques" /> 
+							
+						<h:selectOneMenu
+							value="#{contextoBean.contaAtiva.conta}"
+							valueChangeListener="#{contextoBean.setContaAtiva}"
+							rendered="#{!empty contextoBean}" 
+							onchange="submit()">
+
+							<f:selectItems
+										   var="conta" 
+										   value="#{contaBean.lista}"
+										   itemValue="#{conta.conta}" 
+										   itemLabel="#{conta.descricao}" />
+						</h:selectOneMenu> 
+						
+						<h:commandLink 
+									   action="/restrito/principal" 
+									   title="Principal">
+			                           <h:graphicImage
+			                            			   library="imagens" 
+			                           				   name="principal16.png" />
+			                           				   
+						</h:commandLink>
+						
+						 <h:outputLink 
+						 				value="javascript:void(0)"
+										onclick="document.location='#{request.contextPath}/j_spring_security_logout'"
+										title="Sair">
+										<h:graphicImage 
+														library="imagens" 
+														name="logout16.png" />
+						
+						</h:outputLink>
+						
+						 <sec:ifAnyGranted 
+						 					roles="ROLE_ADMINISTRADOR">
+											<h:commandLink 
+															action="/admin/principal" 
+															title="Administrativo">
+															
+															<h:graphicImage 
+																			library="imagens" 
+																			name="administrativo16.png" />
+											</h:commandLink>
+											
+						</sec:ifAnyGranted></td>
+
+
+				</tr>
+			</table>
+		</h:form>
+	</sec:ifAnyGranted>
+</ui:composition>
+</html>
