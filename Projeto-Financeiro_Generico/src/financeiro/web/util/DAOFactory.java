@@ -1,5 +1,7 @@
 package financeiro.web.util;
 
+import financeiro.bolsa.acao.AcaoDAO;
+import financeiro.bolsa.acao.AcaoDAOHibernate;
 import financeiro.categoria.*;
 import financeiro.conta.*;
 import financeiro.lancamento.*;
@@ -44,6 +46,14 @@ public class DAOFactory {
 		ChequeDAOHibernate chequeDAO = new ChequeDAOHibernate();
 		chequeDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
 		return chequeDAO;
+		
+	}
+	
+	public static AcaoDAO criarAcaoDAO(){
+		
+		AcaoDAOHibernate acaoDAO = new AcaoDAOHibernate();
+		acaoDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+		return acaoDAO;
 		
 	}
 	
