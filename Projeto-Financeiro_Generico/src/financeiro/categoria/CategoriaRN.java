@@ -119,26 +119,26 @@ public class CategoriaRN {
 	public void salvaEstruturaPadrao(Usuario usuario) {
 
 		Categoria despesas = new Categoria(null, usuario, "DESPESAS", -1);
+		
 		despesas = this.categoriaDAO.salvar(despesas);
-		this.categoriaDAO
-				.salvar(new Categoria(despesas, usuario, "Moradia", -1));
-		this.categoriaDAO.salvar(new Categoria(despesas, usuario,
-				"Alimentação", -1));
-		this.categoriaDAO.salvar(new Categoria(despesas, usuario, "Vestuário",
-				-1));
-		this.categoriaDAO.salvar(new Categoria(despesas, usuario,
-				"Deslocamento", -1));
-		this.categoriaDAO.salvar(new Categoria(despesas, usuario,
-				"Cuidados Pessoais", -1));
-		this.categoriaDAO.salvar(new Categoria(despesas, usuario, "Educação",
-				-1));
-		this.categoriaDAO.salvar(new Categoria(despesas, usuario, "Saúde", -1));
-		this.categoriaDAO.salvar(new Categoria(despesas, usuario, "Lazer", -1));
-		this.categoriaDAO.salvar(new Categoria(despesas, usuario,
-				"Despesas Financeiras", -1));
-
+		
+		Categoria opFixas = new Categoria(despesas,usuario,"Operacionais fixas",-1);
+		opFixas = this.categoriaDAO.salvar(opFixas);
+		
+		Categoria opVariaveis = new Categoria(despesas,usuario,"Operacionais variaveis",-1);
+		opVariaveis = this.categoriaDAO.salvar(opVariaveis);
+		
+		Categoria naoOp = new Categoria(despesas,usuario,"Não operacionais",-1);
+		naoOp = this.categoriaDAO.salvar(naoOp);
+		
+		
+		
+		
+		
 		Categoria receitas = new Categoria(null, usuario, "RECEITAS", 1);
+		
 		receitas = this.categoriaDAO.salvar(receitas);
+		
 		this.categoriaDAO
 				.salvar(new Categoria(receitas, usuario, "Salário", 1));
 		this.categoriaDAO.salvar(new Categoria(receitas, usuario,

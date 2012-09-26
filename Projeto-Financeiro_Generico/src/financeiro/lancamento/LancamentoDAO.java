@@ -16,5 +16,4 @@ public interface LancamentoDAO {
 	public List<Lancamento> listar(Conta conta, Date dataInicio, Date dataFim);
 
 	public float saldo(Conta conta, Date data);
-
 }

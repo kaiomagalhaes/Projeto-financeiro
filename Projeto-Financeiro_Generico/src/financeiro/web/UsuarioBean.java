@@ -58,18 +58,6 @@ public class UsuarioBean {
 			contaRN.salvar(this.conta);
 		}
 
-		// Envia email após o cadastramento de um usuário novo
-		if (this.destinoSalvar.equals("usuarioSucesso")) {
-			try {
-				usuarioRN.enviarEmailPosCadastramento(this.usuario);
-			} catch (RNException e) {
-				FacesMessage facesMessage = new FacesMessage(
-						"Não foi possível enviar o e-mail de cadastro do usuário. Erro: "
-								+ e.getMessage());
-				context.addMessage(null, facesMessage);
-				return null;
-			}
-		}
 
 		return this.destinoSalvar;
 	}
