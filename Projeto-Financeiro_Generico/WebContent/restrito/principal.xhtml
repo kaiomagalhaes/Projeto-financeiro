@@ -10,26 +10,43 @@
 
 
 		<h:form>
+		
 			<h:panelGrid columns="2" cellpadding="5">
+			
 				<h:panelGroup>
+				
 					<fieldset>
+					
 						<legend>Lançamentos até hoje</legend>
+						
 						<util:extrato width="100%" height="100%"
 							lista="#{lancamentoBean.listaAteHoje}" larguraDescricao="130"
 							botaoExclusao="false" botaoEdicao="false" colunaSaldo="false" />
+							
 					</fieldset>
+					
 				</h:panelGroup>
 				
 				<h:panelGroup>
+				
 					<fieldset>
+					
 						<legend>Lançamentos futuros</legend>
+						
 						<util:extrato width="100%" height="100%"
 							lista="#{lancamentoBean.listaFuturos}" larguraDescricao="130"
 							botaoExclusao="false" botaoEdicao="false" colunaSaldo="false" />
+							
 					</fieldset>
+					
 				</h:panelGroup>
+				
 			</h:panelGrid>
+			
 		</h:form>
+		
 	</ui:define>
+	
 </ui:composition>
+
 </html>

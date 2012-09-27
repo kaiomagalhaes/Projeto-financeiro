@@ -1,19 +1,24 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.prime.com.tr/ui">
+
 <ui:composition>
+
 	<h:form id="edicao">
+
 		<h:messages />
+
 		<h:inputHidden value="#{lancamentoBean.editado.lancamento}" />
 
 		<h:panelGrid columns="5">
+
 			<h:outputLabel value="Data" for="data" />
 			<h:outputLabel value="Categoria" for="categoria" />
-			<h:outputLabel value="Descrição" for="descricao" />
+			<h:outputLabel value="DescriÃ§Ã£o" for="descricao" />
 			<h:outputLabel value="Valor" for="valor" />
 			<h:outputLabel value="Cheque" for="numeroCheque" />
 
@@ -22,7 +27,9 @@
 
 			<h:selectOneMenu id="categoria"
 				value="#{lancamentoBean.editado.categoria}">
+
 				<f:selectItems value="#{categoriaBean.categoriasSelect}" />
+
 			</h:selectOneMenu>
 
 			<h:inputText id="descricao"
@@ -34,16 +41,18 @@
 				<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
 			</h:inputText>
 
-		
+
 			<h:inputText id="numeroCheque" value="#{lancamentoBean.numeroCheque}"
 				maxlength="6" size="6"
 				valueChangeListener="#{lancamentoBean.mudouCheque}" />
-				
+
 		</h:panelGrid>
 
 		<p:commandButton value="Salvar" action="#{lancamentoBean.salvar}"
 			update="listagem, edicao" />
 
 	</h:form>
+
 </ui:composition>
+
 </html>

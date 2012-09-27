@@ -79,7 +79,7 @@ public class AcaoRN {
 			}
 		} catch (RNException e) {
 
-			throw new RNException("NÃ£o foi possivel listar aÃ§Ãµes.Erro"
+			throw new RNException("Não foi possivel listar as ações.Erro"
 					+ e.getMessage());
 
 		}
@@ -98,7 +98,7 @@ public class AcaoRN {
 					acao.getSigla());
 		} catch (IOException e) {
 
-			throw new RNException("NÃ£o foi possivel recuperar cotaÃ§Ã£o.Erro:"
+			throw new RNException("Não foi possivel recuperar cotação.Erro:"
 					+ e.getMessage());
 		}
 

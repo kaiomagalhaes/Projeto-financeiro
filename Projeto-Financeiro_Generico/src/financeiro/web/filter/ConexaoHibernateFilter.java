@@ -25,17 +25,12 @@ public class ConexaoHibernateFilter implements Filter {
 
 		try {
 			
-			System.out.println("28");
-			
 			this.sf.getCurrentSession().beginTransaction();
 			
-			System.out.println("32");
 			chain.doFilter(servletRequest, servletResponse);
 			
-			System.out.println("35");
 			this.sf.getCurrentSession().getTransaction().commit();
 			
-			System.out.println("38");
 			this.sf.getCurrentSession().close();
 
 		} catch (Throwable ex) {

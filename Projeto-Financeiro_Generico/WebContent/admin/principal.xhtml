@@ -8,49 +8,49 @@
 	<ui:define name="corpo">
 
 		<h1>Cadastro de usuários</h1>
-		
+
 		<h:form>
-		
+
 			<h:messages />
-			
+
 			<h:dataTable value="#{usuarioBean.lista}" var="usuario" rules="rows"
 				cellpading="5">
-				
+
 				<f:facet name="caption">
 				
 				    A listagem a seguir exibe a realção de todos os usuários do sistema, você poderá 
 				    realizar ativação e desativação, edição e exclusão para os usuários.
 				    
 				</f:facet>
-				
+
 				<f:facet name="header">Listagem de usuários</f:facet>
-				
+
 				<f:facet name="footer">Final da listagem</f:facet>
 
 				<h:column>
-				
+
 					<h:commandLink action="#{usuarioBean.ativar}">
-					
+
 						<h:graphicImage library="imagens"
 							name="usuario_ativo_#{usuario.ativo}.png" style="border:0" />
 
 						<f:setPropertyActionListener target="#{usuarioBean.usuario}"
 							value="#{usuario}" />
-							
+
 					</h:commandLink>
-					
+
 				</h:column>
 
 
 				<h:column>
-				
+
 					<h:graphicImage library="imagens"
 						name="bandeira_#{usuario.idioma}.png" />
-						
+
 				</h:column>
 
 				<h:column>
-				
+
 					<f:facet name="header">Nome</f:facet>
 					
 					#{usuario.nome}
@@ -58,17 +58,17 @@
 				</h:column>
 
 				<h:column>
-				
+
 					<f:facet name="header">e_Mail</f:facet>
-					
+
 					<a href="mailto:#{usuario.email}">#{usuario.email}</a>
-					
+
 				</h:column>
-				
+
 				<h:column>
-				
+
 					<f:facet name="header">Permissões</f:facet>
-					
+
 					<h:commandLink
 						action="#{usuarioBean.atribuiPermissao(usuario, 'ROLE_ADMINISTRADOR')}"
 						title="Permissão Administrador">
@@ -76,58 +76,58 @@
 						<h:graphicImage library="imagens"
 							name="ROLE_ADMINISTRADOR_#{usuario.permissao.contains('ROLE_ADMINISTRADOR')}.png"
 							style="border:0" />
-							
+
 					</h:commandLink>
 
 					<h:commandLink
 						action="#{usuarioBean.atribuiPermissao(usuario, 'ROLE_USUARIO_VIP')}"
 						title="Permissao usuário vip">
-						
+
 						<h:graphicImage library="imagens"
 							name="ROLE_USUARIO_VIP_#{usuario.permissao.contains('ROLE_USUARIO_VIP')}.png"
 							style="border:0" />
-							
+
 					</h:commandLink>
-					
+
 				</h:column>
 
 				<h:column>
-				
+
 					<h:commandLink action="#{usuarioBean.editar}">
 						<h:graphicImage library="imagens" name="editar16.png"
 							style="border:5" />
-							
+
 						<f:setPropertyActionListener target="#{usuarioBean.usuario}"
 							value="#{usuario}" />
-							
+
 						<f:setPropertyActionListener target="#{usuarioBean.destinoSalvar}"
 							value="/admin/principal" />
-							
+
 					</h:commandLink>
-					
+
 				</h:column>
 
 				<h:column>
-				
+
 					<h:commandLink action="#{usuarioBean.excluir}"
 						onclick="if(!confirm('Confirma a exclusão do usuario #{usuario.nome}?')) return false;">
-						
+
 						<h:graphicImage library="imagens" name="excluir16.png"
 							style="border:0" />
-							
+
 						<f:setPropertyActionListener target="#{usuarioBean.usuario}"
 							value="#{usuario}" />
-							
+
 					</h:commandLink>
-					
+
 				</h:column>
 
 			</h:dataTable>
-			
+
 		</h:form>
 
 	</ui:define>
-	
+
 </ui:composition>
 
 </html>

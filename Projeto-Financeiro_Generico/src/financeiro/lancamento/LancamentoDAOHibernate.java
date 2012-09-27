@@ -17,24 +17,33 @@ public class LancamentoDAOHibernate implements LancamentoDAO {
 	private Session	session;
 
 	public void setSession(Session session) {
+		
 		this.session = session;
+		
 	}
 
 	public void salvar(Lancamento lancamento) {
+		
 		this.session.saveOrUpdate(lancamento);
+		
 	}
 
 	public void excluir(Lancamento lancamento) {
+		
 		this.session.delete(lancamento);
+		
 	}
 
 	public Lancamento carregar(Integer lancamento) {
+		
 		return (Lancamento) this.session.get(Lancamento.class, lancamento);
+		
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Lancamento> listar(Conta conta, Date dataInicio, Date dataFim) {
+		
 		Criteria criteria = this.session.createCriteria(Lancamento.class);
 
 		if (dataInicio != null && dataFim != null) {
@@ -48,12 +57,13 @@ public class LancamentoDAOHibernate implements LancamentoDAO {
 		criteria.add(Restrictions.eq("conta", conta));
 		criteria.addOrder(Order.asc("data"));
 		return criteria.list();
+		
 	}
 
 	public float saldo(Conta conta, Date data) {
 
 		if (data == null) {
-			throw new IllegalArgumentException("[Financeiro] data cannot be null");
+			throw new IllegalArgumentException("[Financeiro] banco não pode ser nulo");
 		}
 
 		StringBuffer sql = new StringBuffer();
@@ -72,8 +82,11 @@ public class LancamentoDAOHibernate implements LancamentoDAO {
 		BigDecimal saldo = (BigDecimal) query.uniqueResult();
 
 		if (saldo != null) {
+			
 			return saldo.floatValue();
 		}
+		
 		return 0f;
 	}
+	
 }

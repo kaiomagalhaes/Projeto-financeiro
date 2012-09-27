@@ -50,55 +50,81 @@ public class Cheque implements Serializable {
 	private Lancamento lancamento;
 
 	public ChequeId getChequeId() {
+		
 		return chequeId;
+		
 	}
 
 	public void setChequeId(ChequeId chequeId) {
+		
 		this.chequeId = chequeId;
+		
 	}
 
 	public Conta getConta() {
+		
 		return conta;
+		
 	}
 
 	public void setConta(Conta conta) {
+		
 		this.conta = conta;
+		
 	}
 
 	public Date getDataCadastro() {
+		
 		return dataCadastro;
+		
 	}
 
 	public void setDataCadastro(Date dataCadastro) {
+		
 		this.dataCadastro = dataCadastro;
+		
 	}
 
 	public Character getSituacao() {
+		
 		return situacao;
+		
 	}
 
 	public void setSituacao(Character situacao) {
+		
 		this.situacao = situacao;
+		
 	}
 
 	public Lancamento getLancamento() {
+		
 		return lancamento;
+		
 	}
 
 	public void setLancamento(Lancamento lancamento) {
+		
 		this.lancamento = lancamento;
+		
 	}
 
 	public static char getSituacaoChequeBaixado() {
+		
 		return SITUACAO_CHEQUE_BAIXADO;
+		
 	}
 
 	public static char getSituacaoChequeCancelado() {
+		
 		return SITUACAO_CHEQUE_CANCELADO;
+		
 	}
 
 	public static char getSituacaoChequeNaoEmitido() {
+		
 		return SITUACAO_CHEQUE_NAO_EMITIDO;
+		
 	}
 
 	@Override

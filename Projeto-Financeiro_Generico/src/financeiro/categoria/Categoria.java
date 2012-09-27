@@ -41,58 +41,84 @@ public class Categoria implements Serializable {
 	}
 
 	public Categoria(Categoria pai, Usuario usuario, String descricao, int fator) {
+		
 		this.pai = pai;
 		this.usuario = usuario;
 		this.descricao = descricao;
 		this.fator = fator;
+		
 	}
 
 	public Integer getCodigo() {
+		
 		return codigo;
+		
 	}
 
 	public void setCodigo(Integer codigo) {
+		
 		this.codigo = codigo;
+		
 	}
 
 	public String getDescricao() {
+		
 		return descricao;
+		
 	}
 
 	public void setDescricao(String descricao) {
+		
 		this.descricao = descricao;
+		
 	}
 
 	public Categoria getPai() {
+		
 		return pai;
+		
 	}
 
 	public void setPai(Categoria pai) {
+		
 		this.pai = pai;
+		
 	}
 
 	public Usuario getUsuario() {
+		
 		return usuario;
+		
 	}
 
 	public void setUsuario(Usuario usuario) {
+		
 		this.usuario = usuario;
+		
 	}
 
 	public List<Categoria> getFilhos() {
+		
 		return filhos;
+		
 	}
 
 	public void setFilhos(List<Categoria> filhos) {
+		
 		this.filhos = filhos;
+		
 	}
 
 	public int getFator() {
+		
 		return fator;
+		
 	}
 
 	public void setFator(int fator) {
+		
 		this.fator = fator;
+		
 	}
 
 	@Override

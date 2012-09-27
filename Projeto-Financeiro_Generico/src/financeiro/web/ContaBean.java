@@ -28,14 +28,22 @@ public class ContaBean {
 	public StreamedContent getArquivoRetorno() {
 
 		FacesContext context = FacesContext.getCurrentInstance();
+		
 		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		
 		String usuario = contextoBean.getUsuarioLogado().getLogin();
+		
 		String nomeRelatorioJasper = "contas";
+		
 		String nomeRelatorioSaida = usuario + "_contas_";
+		
 		RelatorioUtil relatorioUtil = new RelatorioUtil();
+		
 		HashMap parametrosRelatorio = new HashMap();
+		
 		parametrosRelatorio.put("codigoUsuario", contextoBean
 				.getUsuarioLogado().getCodigo());
+		
 		try {
 
 			this.arquivoRetorno = relatorioUtil.geraRelatorio(
@@ -43,9 +51,11 @@ public class ContaBean {
 					nomeRelatorioSaida, this.tipoRelatorio);
 
 		} catch (UtilException e) {
+			
 			context.addMessage(null, new FacesMessage(e.getMessage()));
+			
 		}
-		
+
 		return this.arquivoRetorno;
 
 	}
@@ -124,7 +134,5 @@ public class ContaBean {
 	public void setArquivoRetorno(StreamedContent arquivoRetorno) {
 		this.arquivoRetorno = arquivoRetorno;
 	}
-	
-	
 
 }

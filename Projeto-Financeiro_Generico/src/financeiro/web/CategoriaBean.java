@@ -46,8 +46,11 @@ public class CategoriaBean {
 		if (this.editada != null && pai != null && pai.getCodigo() != null) {
 			
 			this.mostraEdicao = true;
+			
 		} else {
+			
 			this.mostraEdicao = false;
+			
 		}
 		
 	}
@@ -57,7 +60,9 @@ public class CategoriaBean {
 		ContextoBean contextoBean = ContextoUtil.getContextoBean();
 
 		CategoriaRN categoriaRN = new CategoriaRN();
+		
 		this.editada.setUsuario(contextoBean.getUsuarioLogado());
+		
 		categoriaRN.salvar(this.editada);
 
 		this.editada = null;

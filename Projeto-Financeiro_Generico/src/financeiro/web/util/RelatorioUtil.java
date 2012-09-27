@@ -43,43 +43,73 @@ public class RelatorioUtil {
 		StreamedContent arquivoRetorno = null;
 
 		try {
+			
 			FacesContext context = FacesContext.getCurrentInstance();
+			
 			Connection conexao = this.getConexao();
+			
 			String caminhoRelatorio = context.getExternalContext().getRealPath(
 					"relatorios");
+			
 			String caminhoArquivoJasper = caminhoRelatorio + File.separator
 					+ nomeRelatorioJasper + ".jasper";
+			
 			String caminhoArquivoRelatorio = null;
 
 			JasperReport relatorioJasper = (JasperReport) JRLoader
 					.loadObject(caminhoArquivoJasper);
+			
 			JasperPrint impressoraJasper = JasperFillManager.fillReport(
 					relatorioJasper, parametrosRelatorio, conexao);
+			
 			JRExporter tipoArquivoExportado = null;
+			
 			String extensaoArquivoExportado = "";
+			
 			File arquivoGerado = null;
 
 			switch (tipoRelatorio) {
+			
 			case RelatorioUtil.RELATORIO_PDF:
+				
 				tipoArquivoExportado = new JRPdfExporter();
+				
 				extensaoArquivoExportado = "pdf";
+				
 				break;
+				
 			case RelatorioUtil.RELATORIO_HTML:
+				
 				tipoArquivoExportado = new JRHtmlExporter();
+				
 				extensaoArquivoExportado = "html";
+				
 				break;
+				
 			case RelatorioUtil.RELATORIO_EXCEL:
+				
 				tipoArquivoExportado = new JRXlsExporter();
+				
 				extensaoArquivoExportado = "xls";
+				
 				break;
+				
 			case RelatorioUtil.RELATORIO_PLANILHA_OPEN_OFFICE:
+				
 				tipoArquivoExportado = new JROdtExporter();
+				
 				extensaoArquivoExportado = "ods";
+				
 				break;
+				
 			default:
+				
 				tipoArquivoExportado = new JRPdfExporter();
+				
 				extensaoArquivoExportado = "pdf";
+				
 				break;
+				
 			}
 			caminhoArquivoRelatorio = caminhoRelatorio + File.separator
 					+ nomeRelatorioSaida + "." + extensaoArquivoExportado;
@@ -96,28 +126,44 @@ public class RelatorioUtil {
 					"application/" + extensaoArquivoExportado,
 					nomeRelatorioSaida + "." + extensaoArquivoExportado);
 		} catch (JRException e) {
+			
 			throw new UtilException("Não foi possível gerar o relatório.", e);
+			
 		} catch (FileNotFoundException e) {
+			
 			throw new UtilException("Arquivo do relatório não encontrado.", e);
+			
 		}
+		
 		return arquivoRetorno;
+		
 	}
 
 	private Connection getConexao() throws UtilException {
+		
 		java.sql.Connection conexao = null;
 		try {
+			
 			Context initContext = new InitialContext();
 			Context envContext = (Context) initContext
 					.lookup("java:/comp/env/");
 			javax.sql.DataSource ds = (javax.sql.DataSource) envContext
 					.lookup("jdbc/FinanceiroDB");
 			conexao = (java.sql.Connection) ds.getConnection();
+			
 		} catch (NamingException e) {
+			
 			throw new UtilException(
 					"Não foi possível encontrar o nome da conexão do banco.", e);
+			
 		} catch (SQLException e) {
+			
 			throw new UtilException("Ocorreu um erro de SQL.", e);
+			
 		}
+		
 		return conexao;
+		
 	}
+	
 }

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="extrato" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="19"/>
 	<style name="valorRegistro" isDefault="false" forecolor="#009900">
 		<conditionalStyle>
 			<conditionExpression><![CDATA[new Boolean($F{valor}<0)]]></conditionExpression>
@@ -172,10 +172,6 @@ and lancamento.data <= $P{dataFinal}]]>
 				</textElement>
 				<text><![CDATA[Extrato]]></text>
 			</staticText>
-			<image>
-				<reportElement x="187" y="-1" width="368" height="65"/>
-				<imageExpression class="java.lang.String"><![CDATA["C:\\Desenvolvimento\\workspace\\FinanceiroWEB\\WebContent\\resources\\imagens\\logotipo_m.png"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>
