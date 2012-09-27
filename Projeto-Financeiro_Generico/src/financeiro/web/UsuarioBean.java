@@ -67,7 +67,7 @@ public class UsuarioBean {
 			
 		}
 		
-		if(this.destinoSalvar.equals("usuarioSucesso")){
+		if(this.destinoSalvar.equals("usuarioSucesso1")){
 			
 			try{
 				
