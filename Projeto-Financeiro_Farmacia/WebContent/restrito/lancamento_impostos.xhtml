@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:util="http://java.sun.com/jsf/composite/components/util">
+
+<ui:composition template="/templates/interna.xhtml">
+
+	<ui:define name="corpo">
+
+		<h4>Lançamento para o cálculo dos impostos</h4>
+
+
+		<h:form id="edicao-obrigatorio">
+
+			<br />
+
+			<fieldset>
+
+				<legend>OBRIGATÓRIO PARA TODOS OS REGIMES TRIBUTÁRIOS</legend>
+
+				<br />
+
+				<h:messages />
+
+				<h:inputHidden value="#{lancamentoImpostosBean.editado.lancamento}" />
+
+				<h:panelGrid columns="3">
+
+					<h:outputLabel value="Data" for="data" />
+					<h:outputLabel value="Lista" for="lista" />
+					<h:outputLabel value="Valor Total de Venda de Produtos da Lista"
+						for="valor" />
+
+					<p:calendar id="data"
+						value="#{lancamentoImpostosBean.editado.data}"
+						pattern="dd/MM/yyyy" />
+
+					<p:selectOneMenu id="lista"
+						value="#{lancamentoImpostosBean.editado.lista}">
+
+						<f:selectItems value="#{listaBean.listaSelect}" />
+
+					</p:selectOneMenu>
+
+					<p:inputText id="valor"
+						value="#{lancamentoImpostosBean.editado.valor}" size="10">
+
+						<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+
+					</p:inputText>
+
+				</h:panelGrid>
+
+				<p:commandButton value="Salvar"
+					action="#{lancamentoImpostosBean.salvarImpostoObrigatorio}"
+					update="listagem_total" />
+
+			</fieldset>
+
+		</h:form>
+
+		<h:form id="edicao-obrigatorio-simples-nacional">
+
+			<br />
+
+			<fieldset>
+
+				<legend>OBRIGATÓRIO SOMENTE SE ESTIVER NO SIMPLES NACIONAL:</legend>
+
+				<br />
+
+				<h:messages />
+
+				<h:inputHidden value="#{lancamentoImpostosBean.editado.lancamento}" />
+
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Data" for="data" />
+					<h:outputLabel
+						value="Valor Total das Vendas Líquidas acumuladas nos últimos 12 meses segundo informação contábil (R$)"
+						for="valor" />
+
+					<p:calendar id="data"
+						value="#{lancamentoImpostosBean.editado.data}"
+						pattern="dd/MM/yyyy" />
+
+					<p:inputText id="valor"
+						value="#{lancamentoImpostosBean.editado.valor}" size="10">
+
+						<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+
+					</p:inputText>
+
+				</h:panelGrid>
+
+				<p:commandButton value="Salvar"
+					action="#{lancamentoImpostosBean.salvarImpostoObrigatorioSimples}"
+					update="listagem_total" />
+
+			</fieldset>
+
+		</h:form>
+
+		<h:form id="edicao-obrigatorio-regime-tributario">
+
+			<br />
+
+			<fieldset>
+
+				<legend>OBRIGATÓRIO PARA TODOS OS REGIMES TRIBUTÁRIOS:</legend>
+
+				<br />
+
+				<h:messages />
+
+				<h:inputHidden value="#{lancamentoImpostosBean.editado.lancamento}" />
+
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Data" for="data" />
+					<h:outputLabel
+						value="Valor da Somatória das LEITURA 'Z' emitidas no mês (R$)"
+						for="valor" />
+
+					<p:calendar id="data"
+						value="#{lancamentoImpostosBean.editado.data}"
+						pattern="dd/MM/yyyy" />
+
+					<p:inputText id="valor"
+						value="#{lancamentoImpostosBean.editado.valor}" size="10">
+
+						<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+
+					</p:inputText>
+
+				</h:panelGrid>
+
+				<p:commandButton value="Salvar"
+					action="#{lancamentoImpostosBean.salvarImpostoObrigatorioRegimeTributario}"
+					update="listagem_total" />
+
+			</fieldset>
+
+		</h:form>
+
+
+		<h:form id="edicao-obrigatorio-icms">
+
+			<br />
+
+			<fieldset>
+
+				<legend>OBRIGATÓRIO NOS ESTADOS EM QUE EXISTE COMBRANÇA DO
+					ICMS NAS NOTAS FISCAIS DE COMPRA (Substituição Tributária):</legend>
+
+				<br />
+
+				<h:messages />
+
+				<h:inputHidden value="#{lancamentoImpostosBean.editado.lancamento}" />
+
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Data" for="data" />
+					<h:outputLabel
+						value="Valor Total de ICMS cobrados nas Notas Fiscais de Compra como Substituição Tributária (ST) dentro do mês (R$)"
+						for="valor" />
+
+					<p:calendar id="data"
+						value="#{lancamentoImpostosBean.editado.data}"
+						pattern="dd/MM/yyyy" />
+
+					<p:inputText id="valor"
+						value="#{lancamentoImpostosBean.editado.valor}" size="10">
+
+						<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+
+					</p:inputText>
+
+				</h:panelGrid>
+
+				<p:commandButton value="Salvar"
+					action="#{lancamentoImpostosBean.salvarImpostoObrigatorioICMS}"
+					update="listagem_total" />
+
+			</fieldset>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

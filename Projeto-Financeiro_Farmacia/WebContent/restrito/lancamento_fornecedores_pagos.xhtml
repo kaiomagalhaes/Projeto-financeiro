@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:util="http://java.sun.com/jsf/composite/components/util">
+
+<ui:composition template="/templates/interna.xhtml">
+
+	<ui:define name="corpo">
+
+		<h3>Lancamento de despesas com fornecedores</h3>
+
+		<h:form id="edicao">
+
+			<h:messages />
+
+			<h:inputHidden value="#{lancamentoFornecedoresPagosBean.editado.lancamento}" />
+
+			<h:panelGrid columns="2">
+
+				<h:outputLabel value="Data" for="data" />
+				<h:outputLabel value="Valor" for="valor" />
+
+
+
+				<p:calendar id="data" value="#{lancamentoFornecedoresPagosBean.editado.data}"
+					pattern="dd/MM/yyyy" />
+
+				<p:inputText id="valor"
+					value="#{lancamentoFornecedoresPagosBean.editado.valor}" size="10">
+					<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+				</p:inputText>
+
+
+			</h:panelGrid>
+
+			<p:commandButton value="Salvar"
+				action="#{lancamentoFornecedoresPagosBean.salvar}" update="listagem, edicao" />
+
+		</h:form>
+
+		<br />
+		<h:form id="listagem">
+
+			<h:panelGrid columns="1" cellpadding="5">
+				<h:panelGroup>
+					<fieldset>
+						<legend>Lançamentos até hoje</legend>
+						<util:extratoGastoFornecedores width="100%" height="100%"
+							lista="#{lancamentoFornecedoresPagosBean.lista}" larguraDescricao="130"
+							botaoExclusao="true" botaoEdicao="true" colunaSaldo="false" />
+					</fieldset>
+				</h:panelGroup>
+
+
+			</h:panelGrid>
+
+		</h:form>
+
+		<h:form>
+
+			<h:commandButton value="Categorias" action="/restrito/categoria" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

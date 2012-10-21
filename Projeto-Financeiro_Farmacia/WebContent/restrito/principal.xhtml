@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/interna.xhtml">
+	<ui:define name="corpo">
+
+		<h:form>
+
+			<p:panel id="panel" header="Sessões" >
+
+				<h:panelGrid columns="1" cellpadding="5">
+
+
+					<p:button value="Despesas"
+						outcome="/restrito/lancamento_despesas.xhtml" />
+
+					<p:button value="Receitas"
+						outcome="/restrito/lancamento_receitas.xhtml" />
+
+					<p:button value="Vendas liquidas por grupo"
+						outcome="/restrito/lancamento_venda_liquida.xhtml" />
+
+					<p:button value="Descontos concedidos a clientes"
+						outcome="/restrito/lancamento_descontos_clientes.xhtml" />
+
+					<p:button value="Descontos concedidos a fornecedores"
+						outcome="/restrito/lancamento_descontos_fornecedores.xhtml" />
+
+					<p:button value="Fornecedores pagos"
+						outcome="/restrito/lancamento_fornecedores_pagos.xhtml" />
+
+					<p:button value="Porcentagem do markup"
+						outcome="/restrito/lancamento_markup.xhtml" />
+
+					<p:button value="Impostos"
+						outcome="/restrito/lancamento_impostos.xhtml" />
+
+
+				</h:panelGrid>
+
+			</p:panel>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:util="http://java.sun.com/jsf/composite/components/util">
+
+<ui:composition template="/templates/interna.xhtml">
+	<ui:define name="corpo">
+
+		<h:form id="edicao_grupo">
+
+			<h4>Faça os lançamentos por grupo</h4>
+
+			<fieldset>
+				<legend>Lançamentos por grupo</legend>
+
+				<h:messages />
+
+				<h:inputHidden
+					value="#{lancamentoVendaLiquidaBean.editado.lancamento}" />
+
+				<h:panelGrid columns="3">
+
+					<h:outputLabel value="Mês/Ano" for="data" />
+					<h:outputLabel value="Grupo" for="grupo" />
+					<h:outputLabel value="Valor" for="valor" />
+
+					<p:calendar id="data"
+						value="#{lancamentoVendaLiquidaBean.editado.data}"
+						pattern="dd/MM/yyyy" />
+
+					<p:selectOneMenu id="grupo"
+						value="#{lancamentoVendaLiquidaBean.editado.grupo}">
+
+						<f:selectItems value="#{grupoBean.grupoSelect}" />
+
+					</p:selectOneMenu>
+
+					<p:inputText id="valor"
+						value="#{lancamentoVendaLiquidaBean.editado.valor}" size="10">
+						<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+					</p:inputText>
+
+				</h:panelGrid>
+
+				<p:commandButton value="Salvar"
+					action="#{lancamentoVendaLiquidaBean.salvarPorGrupo}"
+					update="listagem, edicao_grupo" />
+
+			</fieldset>
+		</h:form>
+
+
+		<h:form id="edicao_total">
+
+			<br />
+
+			<h3>OU</h3>
+
+
+			<h4>Faça o lançamento do valor total dos grupos</h4>
+
+			<fieldset>
+				<legend>Lançamento do valor total</legend>
+
+
+				<h:messages />
+
+				<h:inputHidden
+					value="#{lancamentoVendaLiquidaBean.editado.lancamento}" />
+
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Mês/Ano" for="data2" />
+					<h:outputLabel value="Valor" for="valor" />
+
+					<p:calendar id="data2"
+						value="#{lancamentoVendaLiquidaBean.editado.data}"
+						pattern="dd/MM/yyyy" />
+
+					<p:inputText id="valor"
+						value="#{lancamentoVendaLiquidaBean.editado.valor}" size="10">
+						<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+					</p:inputText>
+
+				</h:panelGrid>
+
+				<p:commandButton value="Salvar"
+					action="#{lancamentoVendaLiquidaBean.salvarTotal}"
+					update="listagem_total" />
+
+
+
+				<br /> <br />
+
+				<fieldset>
+					<legend>Defina a porcentagem por grupo</legend>
+
+					<br />
+
+					<h:messages />
+
+					<h:inputHidden
+						value="#{lancamentoVendaLiquidaBean.editado.lancamento}" />
+
+					<h:panelGrid columns="3">
+
+
+						<h:outputLabel value="Data" for="data1" />
+						<h:outputLabel value="Grupo" for="grupoPorc" />
+						<h:outputLabel value="Valor" for="valorPorc" />
+
+						<p:calendar id="data"
+							value="#{lancamentoVendaLiquidaBean.editado.data}"
+							pattern="dd/MM/yyyy" />
+
+						<p:selectOneMenu id="grupoPorc"
+							value="#{lancamentoVendaLiquidaBean.editado.grupo}">
+
+							<f:selectItems value="#{grupoBean.grupoSelect}" />
+
+						</p:selectOneMenu>
+
+						<p:inputText id="valorPorc"
+							value="#{lancamentoVendaLiquidaBean.editado.valorPorcentagem}"
+							size="10">
+
+							<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+
+						</p:inputText>
+
+					</h:panelGrid>
+
+					<p:commandButton value="Salvar"
+						action="#{lancamentoVendaLiquidaBean.salvarPorcentagem}"
+						update="listagem_total" />
+
+				</fieldset>
+
+			</fieldset>
+
+
+		</h:form>
+
+
+		<h:form id="listagem">
+
+			<h:panelGrid columns="1" cellpadding="5">
+				<h:panelGroup>
+					<fieldset>
+						<legend>Lançamentos até hoje</legend>
+						<util:extratoVendaLiquida width="100%" height="100%"
+							lista="#{lancamentoVendaLiquidaBean.lista}"
+							larguraDescricao="130" botaoExclusao="true" botaoEdicao="true"
+							colunaSaldo="false" />
+					</fieldset>
+				</h:panelGroup>
+
+			</h:panelGrid>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:util="http://java.sun.com/jsf/composite/components/util">
+
+<ui:composition template="/templates/interna.xhtml">
+	<ui:define name="corpo">
+
+		<h:form id="edicao_grupo">
+
+			<h4>Faça o lançamento do numero de clientes atendidos por mês</h4>
+
+			<fieldset>
+			
+				<legend>Número de clientes</legend>
+
+				<h:messages />
+
+				<h:inputHidden
+					value="#{lancamentoClientesBean.editado.lancamento}" />
+
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Mês/Ano" for="data" />
+					<h:outputLabel value="Número" for="numero" />
+
+					<p:calendar id="data"
+						value="#{lancamentoClientesBean.editado.data}"
+						pattern="dd/MM/yyyy" />
+
+					<h:inputText id="numero"
+						value="#{lancamentoClientesBean.editado.valor}" size="10">
+						<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+					</h:inputText>
+
+				</h:panelGrid>
+
+				<p:commandButton value="Salvar"
+					action="#{lancamentoClientesBean.salvar}"
+					update="listagem, edicao_grupo" />
+
+			</fieldset>
+			
+		</h:form>
+
+		<h:form id="listagem">
+
+			<h:panelGrid columns="1" cellpadding="5">
+				<h:panelGroup>
+					<fieldset>
+						<legend>Lançamentos até hoje</legend>
+						<util:extratoNumeroClientes width="100%" height="100%"
+							lista="#{lancamentoClientesBean.lista}"
+							 botaoExclusao="true" botaoEdicao="true"
+							colunaSaldo="false" />
+					</fieldset>
+				</h:panelGroup>
+
+			</h:panelGrid>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>
